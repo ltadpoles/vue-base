@@ -1,24 +1,28 @@
 # vue-base
+> Vue3 基础模板
 
-## Project setup
-```
-npm install
-```
+- vue-cli
+- vue3
+- vue-router
+- vuex
+- axios
+- eslint
+- prettier
+- less
+> 文件目录
 
-### Compiles and hot-reloads for development
+```js
+├─public
+└─src
+    ├─api // 接口交互Api
+    ├─assets
+    │  ├─font // 字体
+    │  └─style // 全局样式
+    ├─components // 公共组件
+    ├─config // 全局变量
+    ├─router
+    ├─store
+    ├─utils
+    └─views
+        └─layout
 ```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
