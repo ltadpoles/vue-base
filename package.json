@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build:test": "vite build --mode test --base=/test/",
+    "build": "vite build base=/prod/",
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.4.0",
     "element-plus": "^2.3.7",
     "pinia": "^2.1.3",
     "vue": "^3.3.4",
