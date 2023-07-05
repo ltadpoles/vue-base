@@ -6,6 +6,7 @@
         <el-sub-menu :key="item.id" :index="item.id" :disabled="item.meta?.disabled">
           <template #title>
             <i :class="[item.meta?.icon]"></i>
+            <span v-for="sp in item.level - 1">&nbsp;&nbsp;</span>
             <span slot="title"> {{ item.name }}</span>
           </template>
           <MenuTree :menu="item.children" :defaultActive="defaultActive" @clickItem="clickItemHandle" />
@@ -15,6 +16,7 @@
       <template v-else>
         <el-menu-item :key="item.id" :index="item.id" :disabled="item.meta?.disabled" @click="clickItemHandle(item)">
           <i :class="[item.meta?.icon]"></i>
+          <span v-for="sp in item.level - 1">&nbsp;&nbsp;</span>
           <span slot="title">{{ item.name }}</span>
         </el-menu-item>
       </template>
