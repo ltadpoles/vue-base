@@ -1,27 +1,19 @@
 <template>
-  <el-menu :default-active="defaultActive" :unique-opened="true" class="el-menu-vertical-demo">
+  <a-menu mode="inline">
     <template v-for="item in menu">
-      <!-- 如果有子集 -->
-      <template v-if="item.children && item.children.length > 0">
-        <el-sub-menu :key="item.id" :index="item.id" :disabled="item.meta?.disabled">
-          <template #title>
-            <i :class="[item.meta?.icon]"></i>
-            <span v-for="sp in item.level - 1">&nbsp;&nbsp;</span>
-            <span slot="title"> {{ item.name }}</span>
-          </template>
-          <MenuTree :menu="item.children" :defaultActive="defaultActive" @clickItem="clickItemHandle" />
-        </el-sub-menu>
-      </template>
-      <!-- 如果没有子集 -->
+      <a-sub-menu :key="item.id" v-if="item.children && item.children.length > 0">
+        <template #icon>
+          <AppstoreOutlined />
+        </template>
+        <template #title>Navigation Two</template>
+        <menu-tree :menu="item.children" />
+      </a-sub-menu>
+
       <template v-else>
-        <el-menu-item :key="item.id" :index="item.id" :disabled="item.meta?.disabled" @click="clickItemHandle(item)">
-          <i :class="[item.meta?.icon]"></i>
-          <span v-for="sp in item.level - 1">&nbsp;&nbsp;</span>
-          <span slot="title">{{ item.name }}</span>
-        </el-menu-item>
+        <a-menu-item :key="item.id">Option 9</a-menu-item>
       </template>
     </template>
-  </el-menu>
+  </a-menu>
 </template>
 
 <script setup>
@@ -31,11 +23,6 @@ defineProps({
     type: Array,
     required: true,
     default: () => []
-  },
-  defaultActive: {
-    type: String,
-    required: true,
-    default: []
   }
 })
 

@@ -1,4 +1,7 @@
+import 'ant-design-vue/dist/antd.css'
 import './assets/styles/main.css'
+
+import * as Icons from '@ant-design/icons-vue'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
@@ -6,11 +9,11 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
-import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-
 const app = createApp(App)
-for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-  app.component(key, component)
+
+// 注册图标组件
+for (const i in Icons) {
+  app.component(i, Icons[i])
 }
 
 app.use(createPinia())

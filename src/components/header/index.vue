@@ -1,22 +1,28 @@
 <template>
   <div class="header">
     <div class="header-left">
-      <el-icon class="cursor-icon" size="26" color="#333" @click="flodClick"><Fold /></el-icon>
+      <component class="cursor-icon" is="menu-fold-outlined" @click="flodClick"></component>
     </div>
     <div class="header-right">
       <span>
-        <el-dropdown>
-          <span class="el-dropdown-link">
-            <el-icon size="26" class="cursor-icon"><User /></el-icon>
-          </span>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item>个人信息</el-dropdown-item>
-              <el-dropdown-item>修改密码</el-dropdown-item>
-              <el-dropdown-item>关于</el-dropdown-item>
-            </el-dropdown-menu>
+        <a-dropdown>
+          <a class="ant-dropdown-link" @click.prevent>
+            <component is="user-outlined" />
+          </a>
+          <template #overlay>
+            <a-menu @click="handleMenuClick">
+              <a-menu-item>
+                <a href="javascript:;">个人中心</a>
+              </a-menu-item>
+              <a-menu-item>
+                <a href="javascript:;">设置</a>
+              </a-menu-item>
+              <a-menu-item>
+                <a href="javascript:;">关于</a>
+              </a-menu-item>
+            </a-menu>
           </template>
-        </el-dropdown>
+        </a-dropdown>
       </span>
     </div>
   </div>
@@ -24,6 +30,10 @@
 
 <script setup>
 const flodClick = () => {}
+
+const handleMenuClick = e => {
+  console.log('click', e)
+}
 </script>
 
 <style lang="less" scoped>
