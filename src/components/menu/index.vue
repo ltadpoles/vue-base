@@ -1,19 +1,17 @@
 <template>
-  <a-menu mode="inline">
-    <template v-for="item in menu">
-      <a-sub-menu :key="item.id" v-if="item.children && item.children.length > 0">
-        <template #icon>
-          <AppstoreOutlined />
-        </template>
-        <template #title>Navigation Two</template>
-        <menu-tree :menu="item.children" />
-      </a-sub-menu>
-
-      <template v-else>
-        <a-menu-item :key="item.id">Option 9</a-menu-item>
+  <template v-for="item in menu">
+    <a-sub-menu :key="item.id" v-if="item.children && item.children.length > 0">
+      <template #icon>
+        <AppstoreOutlined />
       </template>
+      <template #title>Navigation Two</template>
+      <menu-tree :menu="item.children" />
+    </a-sub-menu>
+
+    <template v-else>
+      <a-menu-item :key="item.id">Option 9</a-menu-item>
     </template>
-  </a-menu>
+  </template>
 </template>
 
 <script setup>

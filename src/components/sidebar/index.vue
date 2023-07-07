@@ -4,7 +4,10 @@
       <component is="twitter-outlined" />
       <h3 class="admin-title">后台管理系统</h3>
     </div>
-    <menu-tree :menu="menu" />
+
+    <a-menu mode="inline" >
+      <menu-tree :menu="menu" />
+    </a-menu>
   </div>
 </template>
 
