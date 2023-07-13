@@ -19,6 +19,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import router from '../../router';
 import MenuTree from '../menu/index.vue'
 import { useCounterStore } from '@/stores/counter'
 
@@ -35,7 +36,8 @@ const menu = ref([
         children: [
           {
             id: '0110',
-            name: '三级'
+            name: '三级',
+            key: '/about'
           }
         ]
       }
@@ -43,7 +45,8 @@ const menu = ref([
   },
   {
     name: '单侧',
-    id: '03'
+    id: '03',
+    key: '/rule'
   },
   {
     name: '单层',
@@ -51,17 +54,19 @@ const menu = ref([
     children: [
       {
         name: '二册',
-        id: '020'
+        id: '020',
+        key: '/tuey'
       }
     ]
   }
 ])
-const selectedKeys = ref(['02', '020'])
-const openKeys = ref(['02', '020'])
+const selectedKeys = ref([])
+const openKeys = ref([])
 
 const handleClick = e => {
   console.log('click', e)
-  console.log(selectedKeys)
+  // console.log(selectedKeys)
+  router.push(e.key)
 }
 </script>
 

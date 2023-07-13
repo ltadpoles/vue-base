@@ -1,6 +1,6 @@
 <template>
   <template v-for="item in menu">
-    <a-sub-menu :key="item.id" v-if="item.children && item.children.length > 0" @titleClick="titleClick">
+    <a-sub-menu :key="item.key" v-if="item.children && item.children.length > 0" @titleClick="titleClick">
       <template #icon>
         <component is="wallet-outlined" />
       </template>
@@ -10,7 +10,7 @@
     </a-sub-menu>
 
     <template v-else>
-      <a-menu-item :key="item.id">
+      <a-menu-item :key="item.key">
         <template #icon>
           <component is="wallet-outlined" />
         </template>
@@ -30,6 +30,6 @@ defineProps({
   }
 })
 const titleClick = e => {
-  console.log(e)
+  // console.log(e)
 }
 </script>
