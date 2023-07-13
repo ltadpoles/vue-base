@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <section class="layout-left">
-      <section class="v-sidebar">
+      <section class="v-sidebar" :class="counter.isCollapsed ? 'v-sidebar-collapsed' : ''">
         <v-sidebar />
       </section>
     </section>
@@ -24,6 +24,9 @@
 import vHeader from '@/components/header/index.vue'
 import vSidebar from '@/components/sidebar/index.vue'
 import vFooter from '@/components/footer/index.vue'
+import { useCounterStore } from '@/stores/counter'
+
+const counter = useCounterStore()
 </script>
 
 <style lang="less" scoped>
@@ -36,6 +39,13 @@ import vFooter from '@/components/footer/index.vue'
     .v-sidebar {
       width: 200px;
       min-width: 200px;
+      height: 100%;
+      transition: all .2s;
+    }
+
+    .v-sidebar-collapsed {
+      width: 80px;
+      min-width: 80px;
       height: 100%;
     }
   }

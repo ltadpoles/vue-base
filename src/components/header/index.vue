@@ -1,7 +1,18 @@
 <template>
   <div class="header">
     <div class="header-left">
-      <component class="cursor-icon" is="menu-fold-outlined" @click="flodClick"></component>
+      <component
+        class="cursor-icon"
+        is="menu-fold-outlined"
+        v-show="!counter.isCollapsed"
+        @click="flodClick"
+      ></component>
+      <component
+        class="cursor-icon"
+        is="menu-unfold-outlined"
+        v-show="counter.isCollapsed"
+        @click="flodClick"
+      ></component>
     </div>
     <div class="header-right">
       <span>
@@ -29,7 +40,13 @@
 </template>
 
 <script setup>
-const flodClick = () => {}
+import { useCounterStore } from '@/stores/counter'
+
+const counter = useCounterStore()
+
+const flodClick = () => {
+  counter.increment()
+}
 
 const handleMenuClick = e => {
   console.log('click', e)

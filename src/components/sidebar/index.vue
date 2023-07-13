@@ -1,21 +1,28 @@
 <template>
   <div class="sidebar">
     <div class="sidebar-top">
-      <component is="twitter-outlined" />
-      <h3 class="admin-title">后台管理系统</h3>
+      <component is="field-number-outlined" />
+      <h3 class="admin-title" v-show="!counter.isCollapsed">管理系统</h3>
     </div>
 
-    <a-menu mode="inline" >
+    <a-menu
+      mode="inline"
+      :inlineCollapsed="counter.isCollapsed"
+      @click="handleClick"
+      v-model:openKeys="openKeys"
+      v-model:selectedKeys="selectedKeys"
+    >
       <menu-tree :menu="menu" />
     </a-menu>
   </div>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import MenuTree from '../menu/index.vue'
+import { useCounterStore } from '@/stores/counter'
 
-const defaultActive = ref('0')
+const counter = useCounterStore()
 
 const menu = ref([
   {
@@ -49,19 +56,13 @@ const menu = ref([
     ]
   }
 ])
-const selectedKeys = ref(['1'])
-const openKeys = ref(['sub1'])
+const selectedKeys = ref(['02', '020'])
+const openKeys = ref(['02', '020'])
 
-const flodClick = () => {}
 const handleClick = e => {
   console.log('click', e)
+  console.log(selectedKeys)
 }
-const titleClick = e => {
-  console.log('titleClick', e)
-}
-watch(openKeys, val => {
-  console.log('openKeys', val)
-})
 </script>
 
 <style lang="less" scoped>
