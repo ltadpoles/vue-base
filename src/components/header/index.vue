@@ -22,7 +22,7 @@
           </a>
           <template #overlay>
             <a-menu @click="handleMenuClick">
-              <a-menu-item>
+              <a-menu-item key="/layout/about">
                 <a href="javascript:;">个人中心</a>
               </a-menu-item>
               <a-menu-item>
@@ -42,7 +42,11 @@
 <script setup>
 import { useCounterStore } from '@/stores/counter'
 
+import { useRouter } from 'vue-router'
+
 const counter = useCounterStore()
+
+const router = useRouter()
 
 const flodClick = () => {
   counter.increment()
@@ -50,6 +54,7 @@ const flodClick = () => {
 
 const handleMenuClick = e => {
   console.log('click', e)
+  router.push(e.key)
 }
 </script>
 

@@ -9,8 +9,9 @@
       mode="inline"
       :inlineCollapsed="counter.isCollapsed"
       @click="handleClick"
-      v-model:openKeys="openKeys"
-      v-model:selectedKeys="selectedKeys"
+      @openChange="onOpenChange"
+      :openKeys="openKeys"
+      :selectedKeys="[route.path]"
     >
       <menu-tree :menu="menu" />
     </a-menu>
@@ -18,12 +19,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import router from '../../router';
+import { ref, onMounted } from 'vue'
 import MenuTree from '../menu/index.vue'
 import { useCounterStore } from '@/stores/counter'
 
+import { useRoute, useRouter } from 'vue-router'
+
 const counter = useCounterStore()
+
+const router = useRouter()
+const route = useRoute()
 
 const menu = ref([
   {
@@ -60,14 +65,31 @@ const menu = ref([
     ]
   }
 ])
-const selectedKeys = ref([])
+
 const openKeys = ref([])
 
-const handleClick = e => {
-  console.log('click', e)
-  // console.log(selectedKeys)
-  router.push(e.key)
+const handleClick = item => {
+  router.push(item.key)
+
+  // 只有一层的菜单 清空展开数组
+  if (item.keyPath.length == 1) {
+    counter.removeOpenKey()
+    openKeys.value = []
+  }
 }
+
+const onOpenChange = keys => {
+  console.log(keys)
+  // 保存展开的菜单
+  counter.setOpenKey(JSON.stringify(keys))
+}
+
+onMounted(() => {
+  // 设置刷新前的菜单展开项
+  let openKey = counter.getOpenKey()
+  openKey = openKey ? JSON.parse(openKey) : []
+  openKeys.value = openKey
+})
 </script>
 
 <style lang="less" scoped>
