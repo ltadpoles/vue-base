@@ -11,7 +11,11 @@
         <v-header />
       </section>
       <section class="content-views">
-        <RouterView />
+        <router-view v-slot="{ Component }">
+          <transition name="slide-fade">
+            <component :is="Component" />
+          </transition>
+        </router-view>
       </section>
       <section class="v-footer">
         <v-footer />
@@ -40,7 +44,7 @@ const counter = useCounterStore()
       width: 200px;
       min-width: 200px;
       height: 100%;
-      transition: all .2s;
+      transition: all 0.2s;
     }
 
     .v-sidebar-collapsed {
@@ -54,6 +58,8 @@ const counter = useCounterStore()
     flex: 1;
     .content-views {
       height: calc(100vh - 128px);
+      padding: 15px;
+      box-sizing: border-box;
     }
   }
 }

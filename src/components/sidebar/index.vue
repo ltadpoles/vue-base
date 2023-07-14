@@ -37,7 +37,7 @@ const menu = ref([
           {
             id: '0110',
             name: '三级',
-            key: '/about'
+            key: '/layout/about'
           }
         ]
       }
@@ -46,7 +46,7 @@ const menu = ref([
   {
     name: '单侧',
     id: '03',
-    key: '/rule'
+    key: '/layout'
   },
   {
     name: '单层',
