@@ -1,27 +1,27 @@
 <template>
   <template v-for="item in menu">
-    <a-sub-menu :key="item.key" v-if="item.children && item.children.length > 0" @titleClick="titleClick">
-      <template #icon>
-        <component is="wallet-outlined" />
+    <el-sub-menu :index="item.id" v-if="item.children && item.children.length > 0">
+      <template #title>
+        <el-icon :size="20">
+          <component :is="item.icon" />
+        </el-icon>
+        <span>{{ item.name }}</span>
       </template>
-
-      <template #title> Navigation Two </template>
       <menu-tree :menu="item.children" />
-    </a-sub-menu>
+    </el-sub-menu>
 
     <template v-else>
-      <a-menu-item :key="item.key">
-        <template #icon>
-          <component is="wallet-outlined" />
-        </template>
-        Option 9
-      </a-menu-item>
+      <el-menu-item :index="item.id">
+        <el-icon :size="20">
+          <component :is="item.icon" />
+        </el-icon>
+        <span>{{ item.name }}</span>
+      </el-menu-item>
     </template>
   </template>
 </template>
 
-<script setup>
-import MenuTree from './index.vue'
+<script setup name="menuTree">
 defineProps({
   menu: {
     type: Array,
@@ -29,7 +29,4 @@ defineProps({
     default: () => []
   }
 })
-const titleClick = e => {
-  // console.log(e)
-}
 </script>

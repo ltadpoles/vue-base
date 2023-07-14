@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="header-left">
+    <!-- <div class="header-left">
       <component
         class="cursor-icon"
         is="menu-fold-outlined"
@@ -35,7 +35,7 @@
           </template>
         </a-dropdown>
       </span>
-    </div>
+    </div> -->
   </div>
 </template>
 

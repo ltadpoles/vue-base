@@ -1,20 +1,16 @@
 <template>
   <div class="sidebar">
     <div class="sidebar-top">
-      <component is="field-number-outlined" />
+      <el-icon :size="20">
+        <component is="Shop" />
+      </el-icon>
+
       <h3 class="admin-title" v-show="!counter.isCollapsed">管理系统</h3>
     </div>
 
-    <a-menu
-      mode="inline"
-      :inlineCollapsed="counter.isCollapsed"
-      @click="handleClick"
-      @openChange="onOpenChange"
-      :openKeys="openKeys"
-      :selectedKeys="[route.path]"
-    >
+    <el-menu default-active="2" @open="handleOpen" @close="handleClose">
       <menu-tree :menu="menu" />
-    </a-menu>
+    </el-menu>
   </div>
 </template>
 
@@ -66,30 +62,14 @@ const menu = ref([
   }
 ])
 
-const openKeys = ref([])
-
-const handleClick = item => {
-  router.push(item.key)
-
-  // 只有一层的菜单 清空展开数组
-  if (item.keyPath.length == 1) {
-    counter.removeOpenKey()
-    openKeys.value = []
-  }
+const handleOpen = (key, keyPath) => {
+  console.log(key, keyPath)
+}
+const handleClose = (key, keyPath) => {
+  console.log(key, keyPath)
 }
 
-const onOpenChange = keys => {
-  console.log(keys)
-  // 保存展开的菜单
-  counter.setOpenKey(JSON.stringify(keys))
-}
-
-onMounted(() => {
-  // 设置刷新前的菜单展开项
-  let openKey = counter.getOpenKey()
-  openKey = openKey ? JSON.parse(openKey) : []
-  openKeys.value = openKey
-})
+onMounted(() => {})
 </script>
 
 <style lang="less" scoped>
