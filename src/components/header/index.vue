@@ -1,22 +1,16 @@
 <template>
   <div class="header">
-    <!-- <div class="header-left">
-      <component
-        class="cursor-icon"
-        is="menu-fold-outlined"
-        v-show="!counter.isCollapsed"
-        @click="flodClick"
-      ></component>
-      <component
-        class="cursor-icon"
-        is="menu-unfold-outlined"
-        v-show="counter.isCollapsed"
-        @click="flodClick"
-      ></component>
+    <div class="header-left">
+      <el-icon :size="20" class="cursor-icon" v-show="!counter.isCollapsed" @click="flodClick">
+        <component is="Fold" />
+      </el-icon>
+      <el-icon :size="20" class="cursor-icon" v-show="counter.isCollapsed" @click="flodClick">
+        <component is="Expand" />
+      </el-icon>
     </div>
     <div class="header-right">
       <span>
-        <a-dropdown>
+        <!-- <a-dropdown>
           <a class="ant-dropdown-link" @click.prevent>
             <component is="user-outlined" />
           </a>
@@ -33,9 +27,9 @@
               </a-menu-item>
             </a-menu>
           </template>
-        </a-dropdown>
+        </a-dropdown> -->
       </span>
-    </div> -->
+    </div>
   </div>
 </template>
 

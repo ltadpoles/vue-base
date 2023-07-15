@@ -8,7 +8,7 @@
       <h3 class="admin-title" v-show="!counter.isCollapsed">管理系统</h3>
     </div>
 
-    <el-menu default-active="2" @open="handleOpen" @close="handleClose">
+    <el-menu default-active="2" router :collapse="counter.isCollapsed" @open="handleOpen" @close="handleClose">
       <menu-tree :menu="menu" />
     </el-menu>
   </div>
@@ -30,6 +30,7 @@ const menu = ref([
   {
     name: '一级',
     id: '01',
+    icon: 'HomeFilled',
     children: [
       {
         id: '010',
@@ -38,7 +39,7 @@ const menu = ref([
           {
             id: '0110',
             name: '三级',
-            key: '/layout/about'
+            url: '/layout/about'
           }
         ]
       }
@@ -47,16 +48,18 @@ const menu = ref([
   {
     name: '单侧',
     id: '03',
-    key: '/layout'
+    icon: 'Avatar',
+    url: '/layout'
   },
   {
     name: '单层',
     id: '02',
+    icon: 'Location',
     children: [
       {
         name: '二册',
         id: '020',
-        key: '/tuey'
+        url: '/layout/about'
       }
     ]
   }

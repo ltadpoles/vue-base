@@ -48,8 +48,8 @@ const counter = useCounterStore()
     }
 
     .v-sidebar-collapsed {
-      width: 80px;
-      min-width: 80px;
+      width: 65px;
+      min-width: 65px;
       height: 100%;
     }
   }
