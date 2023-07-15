@@ -8,7 +8,7 @@
       <h3 class="admin-title" v-show="!counter.isCollapsed">管理系统</h3>
     </div>
 
-    <el-menu default-active="2" router :collapse="counter.isCollapsed" @open="handleOpen" @close="handleClose">
+    <el-menu router :default-active="route.path" :unique-opened="true" :collapse="counter.isCollapsed">
       <menu-tree :menu="menu" />
     </el-menu>
   </div>
@@ -19,11 +19,10 @@ import { ref, onMounted } from 'vue'
 import MenuTree from '../menu/index.vue'
 import { useCounterStore } from '@/stores/counter'
 
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 const counter = useCounterStore()
 
-const router = useRouter()
 const route = useRoute()
 
 const menu = ref([
@@ -31,10 +30,12 @@ const menu = ref([
     name: '一级',
     id: '01',
     icon: 'HomeFilled',
+    url: '01',
     children: [
       {
         id: '010',
         name: '二级',
+        url: '02',
         children: [
           {
             id: '0110',
@@ -50,29 +51,22 @@ const menu = ref([
     id: '03',
     icon: 'Avatar',
     url: '/layout'
-  },
-  {
-    name: '单层',
-    id: '02',
-    icon: 'Location',
-    children: [
-      {
-        name: '二册',
-        id: '020',
-        url: '/layout/about'
-      }
-    ]
   }
+  // {
+  //   name: '单层',
+  //   id: '02',
+  //   icon: 'Location',
+  //   url: '',
+  //   children: [
+  //     {
+  //       name: '二册',
+  //       id: '020',
+  //       url: '/layout/about'
+  //     }
+  //   ]
+  // }
 ])
 
-const handleOpen = (key, keyPath) => {
-  console.log(key, keyPath)
-}
-const handleClose = (key, keyPath) => {
-  console.log(key, keyPath)
-}
-
-onMounted(() => {})
 </script>
 
 <style lang="less" scoped>

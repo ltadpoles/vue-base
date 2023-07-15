@@ -8,15 +8,5 @@ export const useCounterStore = defineStore('counter', () => {
     isCollapsed.value = !isCollapsed.value
   }
 
-  function setOpenKey(data) {
-    return sessionStorage.setItem('openKeys', data)
-  }
-  function getOpenKey() {
-    return sessionStorage.getItem('openKeys')
-  }
-  function removeOpenKey() {
-    return sessionStorage.removeItem('openKeys')
-  }
-
-  return { isCollapsed, increment, setOpenKey, getOpenKey, removeOpenKey }
+  return { isCollapsed, increment }
 })

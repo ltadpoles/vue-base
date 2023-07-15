@@ -9,46 +9,38 @@
       </el-icon>
     </div>
     <div class="header-right">
-      <span>
-        <!-- <a-dropdown>
-          <a class="ant-dropdown-link" @click.prevent>
-            <component is="user-outlined" />
-          </a>
-          <template #overlay>
-            <a-menu @click="handleMenuClick">
-              <a-menu-item key="/layout/about">
-                <a href="javascript:;">个人中心</a>
-              </a-menu-item>
-              <a-menu-item>
-                <a href="javascript:;">设置</a>
-              </a-menu-item>
-              <a-menu-item>
-                <a href="javascript:;">关于</a>
-              </a-menu-item>
-            </a-menu>
-          </template>
-        </a-dropdown> -->
-      </span>
+      <el-dropdown trigger="click" @command="handleMenuClick">
+        <span class="header-right-user cursor-icon">
+          <el-icon :size="20">
+            <User />
+          </el-icon>
+          &nbsp; 游荡de蝌蚪
+        </span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item command="/layout">个人中心 </el-dropdown-item>
+            <el-dropdown-item divided command="/layout/setting">设置</el-dropdown-item>
+            <el-dropdown-item divided command="/layout/about">关于</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
     </div>
   </div>
 </template>
 
 <script setup>
 import { useCounterStore } from '@/stores/counter'
-
 import { useRouter } from 'vue-router'
-
 const counter = useCounterStore()
-
 const router = useRouter()
 
 const flodClick = () => {
   counter.increment()
 }
 
-const handleMenuClick = e => {
-  console.log('click', e)
-  router.push(e.key)
+const handleMenuClick = command => {
+  console.log('click', command)
+  router.push(command)
 }
 </script>
 
@@ -64,6 +56,13 @@ const handleMenuClick = e => {
   .header-left {
     display: flex;
     align-items: center;
+  }
+
+  .header-right {
+    .header-right-user {
+      display: flex;
+      align-items: center;
+    }
   }
 
   .cursor-icon {
