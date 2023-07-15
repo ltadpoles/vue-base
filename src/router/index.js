@@ -1,6 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Layout from '../views/Layout/index.vue'
-import Login from '../views/passport/login.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -8,29 +7,36 @@ const router = createRouter({
     {
       path: '/',
       name: 'Home',
-      redirect: '/layout'
+      redirect: '/dashboard'
     },
     {
-      path: '/layout',
-      name: 'Layout',
+      path: '/dashboard',
+      name: 'Dashboard',
       component: Layout,
       children: [
         {
           path: '',
-          name: 'index',
-          component: () => import('@/views/index/index.vue')
-        },
+          name: 'DashboardIndex',
+          component: () => import('@/views/dashboard/index.vue')
+        }
+      ]
+    },
+    {
+      path: '/user',
+      name: 'User',
+      component: Layout,
+      children: [
         {
           path: 'about',
-          name: 'About',
-          component: () => import('@/views/about/index.vue')
+          name: 'UserList',
+          component: () => import('@/views/user/about.vue')
         }
       ]
     },
     {
       path: '/login',
       name: 'Login',
-      component: Login
+      component: () => import('@/views/passport/login.vue')
     }
   ],
   scrollBehavior(to, from, savedPosition) {

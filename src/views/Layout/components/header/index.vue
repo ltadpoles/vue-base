@@ -18,9 +18,10 @@
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item command="/layout">个人中心 </el-dropdown-item>
-            <el-dropdown-item divided command="/layout/setting">设置</el-dropdown-item>
-            <el-dropdown-item divided command="/layout/about">关于</el-dropdown-item>
+            <el-dropdown-item command="/dashboard">个人中心 </el-dropdown-item>
+            <el-dropdown-item command="/dashboard">设置</el-dropdown-item>
+            <el-dropdown-item command="/user/about">关于</el-dropdown-item>
+            <el-dropdown-item divided command="/login">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>

@@ -10,12 +10,14 @@
       <section class="v-header">
         <v-header />
       </section>
-      <section class="content-views">
-        <router-view v-slot="{ Component }">
-          <transition name="slide-fade">
-            <component :is="Component" />
-          </transition>
-        </router-view>
+      <section>
+        <el-scrollbar class="content-views"
+          ><router-view v-slot="{ Component }">
+            <transition name="slide-fade">
+              <component :is="Component" />
+            </transition>
+          </router-view>
+        </el-scrollbar>
       </section>
       <section class="v-footer">
         <v-footer />
@@ -25,9 +27,9 @@
 </template>
 
 <script setup>
-import vHeader from '@/components/header/index.vue'
-import vSidebar from '@/components/sidebar/index.vue'
-import vFooter from '@/components/footer/index.vue'
+import vHeader from './components/header/index.vue'
+import vSidebar from './components/sidebar/index.vue'
+import vFooter from './components/footer/index.vue'
 import { useCounterStore } from '@/stores/counter'
 
 const counter = useCounterStore()
@@ -60,6 +62,7 @@ const counter = useCounterStore()
       height: calc(100vh - 128px);
       padding: 15px;
       box-sizing: border-box;
+      overflow-x: hidden;
     }
   }
 }

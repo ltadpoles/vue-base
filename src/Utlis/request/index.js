@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-const instance = axios.create()
+const http = axios.create()
 
-instance.defaults.timeout = 3000
+http.defaults.timeout = 3000
 
 // 添加请求拦截器
-instance.interceptors.request.use(
+http.interceptors.request.use(
   function (config) {
     // 在发送请求之前做些什么
     return config
@@ -17,7 +17,7 @@ instance.interceptors.request.use(
 )
 
 // 添加响应拦截器
-instance.interceptors.response.use(
+http.interceptors.response.use(
   function (response) {
     // 2xx 范围内的状态码都会触发该函数。
     // 对响应数据做点什么
@@ -64,4 +64,4 @@ instance.interceptors.response.use(
   }
 )
 
-export default instance
+export default http

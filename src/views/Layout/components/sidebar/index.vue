@@ -40,7 +40,7 @@ const menu = ref([
           {
             id: '0110',
             name: '三级',
-            url: '/layout/about'
+            url: '/user/about'
           }
         ]
       }
@@ -50,7 +50,7 @@ const menu = ref([
     name: '单侧',
     id: '03',
     icon: 'Avatar',
-    url: '/layout'
+    url: '/dashboard'
   }
   // {
   //   name: '单层',
@@ -66,7 +66,6 @@ const menu = ref([
   //   ]
   // }
 ])
-
 </script>
 
 <style lang="less" scoped>
