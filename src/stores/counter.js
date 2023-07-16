@@ -8,5 +8,11 @@ export const useCounterStore = defineStore('counter', () => {
     isCollapsed.value = !isCollapsed.value
   }
 
-  return { isCollapsed, increment }
+  // 设置面包屑导航
+  const crumbList = ref([])
+  function setCrumbList(data) {
+    crumbList.value = data
+  }
+
+  return { isCollapsed, increment, crumbList, setCrumbList }
 })

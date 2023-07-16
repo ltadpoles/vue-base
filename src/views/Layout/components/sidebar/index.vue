@@ -27,44 +27,52 @@ const route = useRoute()
 
 const menu = ref([
   {
-    name: '一级',
+    name: '首页',
     id: '01',
-    icon: 'HomeFilled',
-    url: '01',
+    icon: 'Avatar',
+    url: '/dashboard'
+  },
+  {
+    name: '多层',
+    id: '02',
+    icon: 'Location',
     children: [
       {
-        id: '010',
-        name: '二级',
-        url: '02',
-        children: [
-          {
-            id: '0110',
-            name: '三级',
-            url: '/user/about'
-          }
-        ]
+        name: '列表',
+        id: '020',
+        url: '/more/list'
       }
     ]
   },
   {
-    name: '单侧',
-    id: '03',
-    icon: 'Avatar',
-    url: '/dashboard'
+    name: '用户管理',
+    id: '01',
+    icon: 'HomeFilled',
+    children: [
+      {
+        id: '010',
+        name: '二级',
+        children: [
+          {
+            id: '0110',
+            name: '三级',
+            url: '/user/sec/about'
+          }
+        ]
+      },
+      {
+        id: '011',
+        name: '二级1号',
+        children: [
+          {
+            id: '0111',
+            name: '三级1号',
+            url: '/user/two/about1'
+          }
+        ]
+      }
+    ]
   }
-  // {
-  //   name: '单层',
-  //   id: '02',
-  //   icon: 'Location',
-  //   url: '',
-  //   children: [
-  //     {
-  //       name: '二册',
-  //       id: '020',
-  //       url: '/layout/about'
-  //     }
-  //   ]
-  // }
 ])
 </script>
 

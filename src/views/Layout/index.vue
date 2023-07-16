@@ -11,17 +11,18 @@
         <v-header />
       </section>
       <section>
-        <el-scrollbar class="content-views"
-          ><router-view v-slot="{ Component }">
+        <v-breadcrumb class="breadcrumb-sty" />
+        <el-scrollbar class="content-views">
+          <router-view v-slot="{ Component }">
             <transition name="slide-fade">
               <component :is="Component" />
             </transition>
           </router-view>
         </el-scrollbar>
       </section>
-      <section class="v-footer">
+      <!-- <section class="v-footer">
         <v-footer />
-      </section>
+      </section> -->
     </section>
   </div>
 </template>
@@ -30,6 +31,7 @@
 import vHeader from './components/header/index.vue'
 import vSidebar from './components/sidebar/index.vue'
 import vFooter from './components/footer/index.vue'
+import vBreadcrumb from '@/components/breadcrumb/index.vue'
 import { useCounterStore } from '@/stores/counter'
 
 const counter = useCounterStore()
@@ -58,8 +60,12 @@ const counter = useCounterStore()
 
   .layout-right {
     flex: 1;
+
+    .breadcrumb-sty {
+      padding: 15px;
+    }
     .content-views {
-      height: calc(100vh - 128px);
+      height: calc(100vh - 113px);
       padding: 15px;
       box-sizing: border-box;
       overflow-x: hidden;
