@@ -1,8 +1,5 @@
 <template>
   <el-breadcrumb :separator-icon="ArrowRight">
-    <!-- <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>
-    <el-breadcrumb-item>promotion management</el-breadcrumb-item>
-    <el-breadcrumb-item>promotion list</el-breadcrumb-item> -->
     <el-breadcrumb-item v-for="(item, index) in breadCrumbList" :key="index">{{ item.meta?.title }}</el-breadcrumb-item>
   </el-breadcrumb>
 </template>
