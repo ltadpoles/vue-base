@@ -29,7 +29,7 @@ export default defineConfig({
     // 代理
     proxy: {
       '/api': {
-        target: '/',
+        target: 'https://run.mocky.io',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api/, '')
       }
