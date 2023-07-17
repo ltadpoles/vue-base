@@ -40,7 +40,6 @@ const flodClick = () => {
 }
 
 const handleMenuClick = command => {
-  console.log('click', command)
   router.push(command)
 }
 </script>
