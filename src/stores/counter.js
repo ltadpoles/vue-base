@@ -1,18 +1,18 @@
-import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
-export const useCounterStore = defineStore('counter', () => {
-  // 菜单收缩控制
-  const isCollapsed = ref(false)
-  function increment() {
-    isCollapsed.value = !isCollapsed.value
+export const useCounterStore = defineStore('counter', {
+  state: () => ({
+    isCollapsed: false // 菜单收缩控制
+  }),
+  getters: {},
+  actions: {
+    increment() {
+      this.isCollapsed = !this.isCollapsed
+    }
+  },
+  // 持久化存储
+  persist: {
+    storage: sessionStorage,
+    paths: []
   }
-
-  // 设置面包屑导航
-  const crumbList = ref([])
-  function setCrumbList(data) {
-    crumbList.value = data
-  }
-
-  return { isCollapsed, increment, crumbList, setCrumbList }
 })
