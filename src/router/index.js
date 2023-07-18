@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Layout from '../views/Layout/index.vue'
+import { useCounterStore } from '../stores/counter'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -77,13 +78,12 @@ const router = createRouter({
 
 router.beforeEach(async (to, from) => {
   if (to.path !== '/login') {
-    console.log(1111)
-    let token = localStorage.getItem('token')
-    if (!token) {
-      router.replace('/login')
-
-      return false
-    }
+    // 页面跳转验证token
+    // const counter = useCounterStore()
+    // if (!counter.getToken.token) {
+    //   router.replace('/login')
+    //   return false
+    // }
   }
   return true
 })

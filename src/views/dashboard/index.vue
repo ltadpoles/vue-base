@@ -6,6 +6,8 @@
         action="/api/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
         @fileSuccess="fileSuccess"
         @fileRemove="fileRemove"
+        list-type="picture-card"
+        :drag="true"
       />
     </div>
   </div>

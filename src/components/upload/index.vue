@@ -5,13 +5,14 @@
     :action="action"
     :headers="headers"
     :disabled="disabled"
-    :multiple="true"
+    :multiple="multiple"
     :data="data"
     :name="name"
     :accept="accept"
     :fileSize="fileSize"
     :limit="limit"
-    :list-type="listType"
+    :list-type="listLocalType"
+    :drag="drag"
     :show-file-list="isShowFileList"
     :on-preview="onPreview"
     :on-remove="onRemove"
@@ -23,8 +24,14 @@
     :on-exceed="onExceed"
     :on-change="onChange"
   >
-    <el-button type="primary" v-if="listType == 'text' || listType == 'picture'">{{ btnText }}</el-button>
-    <el-icon v-else><Plus /></el-icon>
+    <template v-if="!drag">
+      <el-button type="primary" v-if="listLocalType == 'text' || listLocalType == 'picture'">{{ btnText }}</el-button>
+      <el-icon v-else><Plus /></el-icon>
+    </template>
+    <template v-else>
+      <el-icon class="el-icon--upload"><upload-filled /></el-icon>
+      <div>拖拽文件到此或者<em>点击上传</em></div>
+    </template>
     <template #tip v-if="showTip">
       <div class="el-upload__tip">{{ tipContent }}</div>
     </template>
@@ -36,10 +43,11 @@
 </template>
 
 <script setup>
-import { ref, toRefs } from 'vue'
+import { onBeforeMount, ref, toRefs } from 'vue'
 
 const dialogVisible = ref(false)
 const dialogImageUrl = ref('')
+const listLocalType = ref('text')
 
 const props = defineProps({
   // 请求地址
@@ -99,8 +107,7 @@ const props = defineProps({
   },
   // 接受上传的文件类型
   accept: {
-    type: String,
-    default: '.jpg, .png, .xls, .xlsx, .doc, .gif'
+    type: String
   },
   // 限制上传文件大小，默认不限制
   fileSize: {
@@ -128,6 +135,15 @@ const props = defineProps({
 
 //定义变量接收父组件传来的方法
 const emit = defineEmits(['fileSuccess', 'fileRemove'])
+
+onBeforeMount(() => {
+  // 可拖拽模式下 设置 listType 无效
+  if (props.drag) {
+    listLocalType.value = 'text'
+  } else {
+    listLocalType.value = props.listType
+  }
+})
 
 // 文件上传成功
 const onSuccess = response => {
