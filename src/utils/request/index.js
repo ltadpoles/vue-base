@@ -1,4 +1,8 @@
 import axios from 'axios'
+import { useCounterStore } from '@/stores/counter'
+import { refresh_token } from './refresh_token'
+
+let isRefreshToken = false // 是否需要开启 token 刷新, 默认不开启
 
 const http = axios.create()
 
@@ -8,6 +12,13 @@ http.defaults.timeout = 3000
 http.interceptors.request.use(
   function (config) {
     // 在发送请求之前做些什么
+    const counter = useCounterStore()
+
+    // 添加 header 请求头
+    if (counter.getToken.token) {
+      config.headers.Authorization = counter.getToken.token
+    }
+
     return config
   },
   function (error) {
@@ -21,7 +32,6 @@ http.interceptors.response.use(
   function (response) {
     // 2xx 范围内的状态码都会触发该函数。
     // 对响应数据做点什么
-    console.log(response)
     return response
   },
   function (error) {
@@ -34,10 +44,15 @@ http.interceptors.response.use(
           type: 'error'
         })
       case 401:
-        return ElMessage({
-          message: '登录已过期或您没有相关权限',
-          type: 'error'
-        })
+        if (isRefreshToken) {
+          refresh_token(http, error.response.config)
+        } else {
+          ElMessage({
+            message: '登录已过期，请重新登录',
+            type: 'error'
+          })
+        }
+        break
       case 403:
         return ElMessage({
           message: '您没有相关权限',
