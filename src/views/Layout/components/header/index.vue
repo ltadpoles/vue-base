@@ -9,6 +9,7 @@
       </el-icon>
     </div>
     <div class="header-right">
+      <el-switch v-model="light" class="mt-2" inline-prompt :active-icon="Sunny" :inactive-icon="Moon" />
       <el-dropdown trigger="click" @command="handleMenuClick">
         <span class="header-right-user cursor-icon">
           <el-icon :size="20">
@@ -32,8 +33,12 @@
 <script setup>
 import { useCounterStore } from '@/stores/counter'
 import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+import { Sunny, Moon } from '@element-plus/icons-vue'
 const counter = useCounterStore()
 const router = useRouter()
+
+const light = ref()
 
 const flodClick = () => {
   counter.increment()

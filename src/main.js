@@ -1,4 +1,4 @@
-import './assets/styles/main.css'
+
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
@@ -8,6 +8,8 @@ import App from './App.vue'
 import router from './router'
 
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+
+import './assets/styles/main.css'
 
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
