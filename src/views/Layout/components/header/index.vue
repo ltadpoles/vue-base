@@ -7,6 +7,8 @@
       <el-icon :size="20" class="cursor-icon" v-show="counter.isCollapsed" @click="flodClick">
         <component is="Expand" />
       </el-icon>
+
+      <v-breadcrumb class="breadcrumb-sty" />
     </div>
     <div class="header-right">
       <el-switch v-model="light" class="mt-2" inline-prompt :active-icon="Sunny" :inactive-icon="Moon" />
@@ -35,6 +37,7 @@ import { useCounterStore } from '@/stores/counter'
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { Sunny, Moon } from '@element-plus/icons-vue'
+import vBreadcrumb from '@/components/breadcrumb/index.vue'
 const counter = useCounterStore()
 const router = useRouter()
 
@@ -56,14 +59,18 @@ const handleMenuClick = command => {
   align-items: center;
   height: 68px;
   padding: 0 30px;
-  background-color: var(---color-background);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--el-border-color);
   .header-left {
     display: flex;
     align-items: center;
+    .breadcrumb-sty {
+      margin-left: 15px;
+    }
   }
 
   .header-right {
+    display: flex;
+    align-items: center;
     .header-right-user {
       display: flex;
       align-items: center;

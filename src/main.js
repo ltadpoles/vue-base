@@ -9,6 +9,7 @@ import router from './router'
 
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
+import 'element-plus/theme-chalk/dark/css-vars.css'
 import './assets/styles/main.css'
 
 const pinia = createPinia()

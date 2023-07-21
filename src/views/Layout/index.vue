@@ -11,7 +11,6 @@
         <v-header />
       </section>
       <section>
-        <v-breadcrumb class="breadcrumb-sty" />
         <el-scrollbar class="content-views">
           <router-view v-slot="{ Component }">
             <transition name="slide-fade">
@@ -31,7 +30,6 @@
 import vHeader from './components/header/index.vue'
 import vSidebar from './components/sidebar/index.vue'
 import vFooter from './components/footer/index.vue'
-import vBreadcrumb from '@/components/breadcrumb/index.vue'
 import { useCounterStore } from '@/stores/counter'
 
 const counter = useCounterStore()
@@ -60,10 +58,6 @@ const counter = useCounterStore()
 
   .layout-right {
     flex: 1;
-
-    .breadcrumb-sty {
-      padding: 15px;
-    }
     .content-views {
       height: calc(100vh - 113px);
       padding: 15px;
