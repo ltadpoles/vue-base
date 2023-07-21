@@ -6,14 +6,10 @@
 
 <script setup>
 import { RouterView } from 'vue-router'
-import { useCounterStore } from './stores/counter'
 import { ElConfigProvider } from 'element-plus'
 import { ref } from 'vue'
 
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 
 const locale = ref(zhCn)
-
-const counter = useCounterStore()
-counter.setPrimaryColor()
 </script>

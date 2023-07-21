@@ -6,12 +6,13 @@ import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import vueSetupExtend from 'vite-plugin-vue-setup-extend' // 组件命名
+import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 
 export default defineConfig({
   envDir: 'env',
   plugins: [
     vue(),
+    // 组件命名插件
     vueSetupExtend(),
     AutoImport({
       resolvers: [ElementPlusResolver()]

@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Layout from '../views/Layout/index.vue'
-import { useCounterStore } from '../stores/counter'
+import { useAuthStore } from '../stores/modules/auth'
+import { computed } from 'vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -79,8 +80,9 @@ const router = createRouter({
 router.beforeEach(async (to, from) => {
   if (to.path !== '/login') {
     // 页面跳转验证token
-    // const counter = useCounterStore()
-    // if (!counter.getToken.token) {
+    // const authStore = useAuthStore()
+    // const token = computed(() => authStore.token)
+    // if (!token) {
     //   router.replace('/login')
     //   return false
     // }

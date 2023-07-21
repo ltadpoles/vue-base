@@ -1,21 +1,20 @@
+/*
+ * @Author: tadpole
+ * @Date: 2023-07-21 17:38:30
+ * @LastEditTime: 2023-07-21 18:21:57
+ * @Description: 项目配置store
+ */
+
 import { defineStore } from 'pinia'
 
-export const useCounterStore = defineStore('counter', {
+export const useSettingStore = defineStore('settingStore', {
   state: () => ({
     isCollapsed: false, // 菜单收缩控制
-    primaryColor: '#409eff', // 项目主题色
-    token: {}
+    primaryColor: '#409eff' // 项目主题色
   }),
-  getters: {
-    getToken: state => state.token,
-    getPrimaryColor: state => state.primaryColor
-  },
   actions: {
     increment() {
       this.isCollapsed = !this.isCollapsed
-    },
-    setToken(data) {
-      this.token = data
     },
     setPrimaryColor(color = this.primaryColor) {
       this.primaryColor = color
@@ -25,10 +24,5 @@ export const useCounterStore = defineStore('counter', {
       // 设置 css 变量
       el.style.setProperty('--el-color-primary', color)
     }
-  },
-  // 持久化存储
-  persist: {
-    storage: sessionStorage,
-    paths: ['token', 'primaryColor']
   }
 })

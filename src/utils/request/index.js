@@ -1,6 +1,7 @@
 import axios from 'axios'
-import { useCounterStore } from '@/stores/counter'
 import { refresh_token } from './refresh_token'
+import { useUserStore } from '../../stores/modules/user'
+import { computed } from 'vue'
 
 let isRefreshToken = false // 是否需要开启 token 刷新, 默认不开启
 
@@ -12,11 +13,12 @@ http.defaults.timeout = 3000
 http.interceptors.request.use(
   function (config) {
     // 在发送请求之前做些什么
-    const counter = useCounterStore()
+    const userStore = useUserStore()
+    const token = computed(() => userStore.token)
 
     // 添加 header 请求头
-    if (counter.getToken.token) {
-      config.headers.Authorization = counter.getToken.token
+    if (token) {
+      config.headers.Authorization = token
     }
 
     return config
