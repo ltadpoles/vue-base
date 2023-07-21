@@ -55,7 +55,7 @@
 <script setup>
 import { useCounterStore } from '@/stores/counter'
 import { useRouter } from 'vue-router'
-import { ref, onMounted, reactive, toRefs } from 'vue'
+import { ref, reactive, toRefs } from 'vue'
 import vBreadcrumb from '@/components/breadcrumb/index.vue'
 const counter = useCounterStore()
 const router = useRouter()
@@ -87,11 +87,17 @@ const themeChange = val => {
 }
 
 const setting = () => {
+  colorInfo.primaryColor = counter.getPrimaryColor
   colorInfo.drawer = true
 }
 
 const colorChange = color => {
-  counter.setPrimaryColor(color)
+  console.log(color)
+  if (color) {
+    counter.setPrimaryColor(color)
+  } else {
+    counter.setPrimaryColor('#409eff')
+  }
 }
 
 const grayChange = val => {
@@ -113,10 +119,6 @@ const logout = () => {
 }
 
 let { drawer, theme, primaryColor, gray } = toRefs(colorInfo)
-
-onMounted(() => {
-  colorInfo.primaryColor = counter.getPrimaryColor
-})
 </script>
 
 <style lang="less" scoped>
