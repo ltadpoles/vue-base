@@ -43,7 +43,10 @@
 </template>
 
 <script setup>
-import { onBeforeMount, ref, toRefs } from 'vue'
+import { computed, onBeforeMount, ref, toRefs } from 'vue'
+import { useUserStore } from '@/stores/modules/user'
+
+const userStore = useUserStore()
 
 const dialogVisible = ref(false)
 const dialogImageUrl = ref('')
@@ -58,7 +61,11 @@ const props = defineProps({
   // 请求头
   headers: {
     type: Object,
-    default: () => {}
+    default: () => {
+      return {
+        Authorization: computed(() => userStore.token.token)
+      }
+    }
   },
   // 上传按钮文字
   btnText: {
@@ -68,7 +75,7 @@ const props = defineProps({
   // 默认上传文件，可用于回显
   fileList: {
     type: Array,
-    default: () => []
+    default: []
   },
   // 是否有tip提示
   showTip: {

@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <section class="layout-left">
-      <section class="v-sidebar" :class="counter.isCollapsed ? 'v-sidebar-collapsed' : ''">
+      <section class="v-sidebar" :class="settingStore.isCollapsed ? 'v-sidebar-collapsed' : ''">
         <v-sidebar />
       </section>
     </section>
@@ -30,9 +30,9 @@
 import vHeader from './components/header/index.vue'
 import vSidebar from './components/sidebar/index.vue'
 import vFooter from './components/footer/index.vue'
-import { useCounterStore } from '@/stores/counter'
+import { useSettingStore } from '@/stores/modules/setting'
 
-const counter = useCounterStore()
+const settingStore = useSettingStore()
 </script>
 
 <style lang="less" scoped>

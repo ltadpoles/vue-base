@@ -5,10 +5,10 @@
         <component is="Shop" />
       </el-icon>
 
-      <h3 class="admin-title" v-show="!counter.isCollapsed">管理系统</h3>
+      <h3 class="admin-title" v-show="!settingStore.isCollapsed">管理系统</h3>
     </div>
 
-    <el-menu router :default-active="route.path" :unique-opened="true" :collapse="counter.isCollapsed">
+    <el-menu router :default-active="route.path" :unique-opened="true" :collapse="settingStore.isCollapsed">
       <menu-tree :menu="menu" />
     </el-menu>
   </div>
@@ -17,11 +17,11 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import MenuTree from '../menu/index.vue'
-import { useCounterStore } from '@/stores/counter'
+import { useSettingStore } from '@/stores/modules/setting'
 
 import { useRoute } from 'vue-router'
 
-const counter = useCounterStore()
+const settingStore = useSettingStore()
 
 const route = useRoute()
 

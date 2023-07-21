@@ -1,10 +1,10 @@
 <template>
   <div class="header">
     <div class="header-left">
-      <el-icon :size="20" class="cursor-icon" v-show="!counter.isCollapsed" @click="flodClick">
+      <el-icon :size="20" class="cursor-icon" v-show="!settingStore.isCollapsed" @click="flodClick">
         <component is="Fold" />
       </el-icon>
-      <el-icon :size="20" class="cursor-icon" v-show="counter.isCollapsed" @click="flodClick">
+      <el-icon :size="20" class="cursor-icon" v-show="settingStore.isCollapsed" @click="flodClick">
         <component is="Expand" />
       </el-icon>
 
@@ -35,29 +35,29 @@
       </el-dropdown>
     </div>
 
-    <el-drawer v-model="drawer" :with-header="false" :destroy-on-close="true">
+    <el-drawer v-model="colorInfo.drawer" :with-header="false" :destroy-on-close="true">
       <div class="drawer-item">
         <span class="demonstration">暗黑模式：</span>
-        <el-switch v-model="theme" @change="themeChange" />
+        <el-switch v-model="colorInfo.theme" @change="themeChange" />
       </div>
       <div class="drawer-item">
         <span class="demonstration">主题色设置：</span>
-        <el-color-picker v-model="primaryColor" @change="colorChange" />
+        <el-color-picker v-model="colorInfo.primaryColor" @change="colorChange" />
       </div>
       <div class="drawer-item">
         <span class="demonstration">灰色模式：</span>
-        <el-switch v-model="gray" @change="grayChange" />
+        <el-switch v-model="colorInfo.gray" @change="grayChange" />
       </div>
     </el-drawer>
   </div>
 </template>
 
 <script setup>
-import { useCounterStore } from '@/stores/counter'
+import { useSettingStore } from '@/stores/modules/setting'
 import { useRouter } from 'vue-router'
-import { ref, reactive, toRefs } from 'vue'
+import { ref, reactive, toRefs, computed } from 'vue'
 import vBreadcrumb from '@/components/breadcrumb/index.vue'
-const counter = useCounterStore()
+const settingStore = useSettingStore()
 const router = useRouter()
 
 const colorInfo = reactive({
@@ -71,7 +71,7 @@ const colorInfo = reactive({
 const circleUrl = ref('https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png')
 
 const flodClick = () => {
-  counter.increment()
+  settingStore.increment()
 }
 
 const handleMenuClick = command => {
@@ -87,16 +87,15 @@ const themeChange = val => {
 }
 
 const setting = () => {
-  colorInfo.primaryColor = counter.getPrimaryColor
+  colorInfo.primaryColor = computed(() => settingStore.primaryColor).value
   colorInfo.drawer = true
 }
 
 const colorChange = color => {
-  console.log(color)
   if (color) {
-    counter.setPrimaryColor(color)
+    settingStore.setPrimaryColor(color)
   } else {
-    counter.setPrimaryColor('#409eff')
+    settingStore.setPrimaryColor('#409eff')
   }
 }
 
@@ -110,15 +109,13 @@ const grayChange = val => {
 
 const logout = () => {
   // 清空 pinia 存储
-  counter.$reset()
+  settingStore.$reset()
   router.replace('/login')
   ElMessage({
     message: '退出登录',
     type: 'success'
   })
 }
-
-let { drawer, theme, primaryColor, gray } = toRefs(colorInfo)
 </script>
 
 <style lang="less" scoped>

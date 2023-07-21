@@ -1,5 +1,6 @@
-import { useCounterStore } from '@/stores/counter'
 import { refreshToken } from '@/api/base'
+import { useUserStore } from '@/stores/modules/user'
+import { computed } from 'vue'
 
 // 是否正在刷新的标记
 let isRefreshing = false
@@ -8,20 +9,21 @@ let requests = []
 
 export const refresh_token = (http, config) => {
   // 如果没有在刷新
-  const counter = useCounterStore()
+  const userStore = useUserStore()
+  const token = computed(() => userStore.token)
   if (!isRefreshing) {
     isRefreshing = true
-    if (!counter.getToken.refresh_token) {
+    if (!token.refresh_token) {
       // 清空本地缓存
-      counter.$reset()
+      userStore.$reset()
       return ElMessage({
         message: '登录已过期，请重新登录',
         type: 'error'
       })
     } else {
-      refreshToken(counter.getToken.refresh_token)
+      refreshToken(token.refresh_token)
         .then(res => {
-          counter.setToken(res.data)
+          userStore.setToken(res.data)
           // 已经刷新了token，将所有队列中的请求进行重试
           requests.forEach(cb => cb(res.data.access_token))
           requests = []
@@ -29,7 +31,7 @@ export const refresh_token = (http, config) => {
           return http(config)
         })
         .catch(() => {
-          counter.$reset()
+          userStore.$reset()
           return ElMessage({
             message: '登录已过期，请重新登录',
             type: 'error'
