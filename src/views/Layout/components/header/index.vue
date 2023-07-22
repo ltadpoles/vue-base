@@ -35,18 +35,18 @@
       </el-dropdown>
     </div>
 
-    <el-drawer v-model="colorInfo.drawer" :with-header="false" :destroy-on-close="true">
+    <el-drawer v-model="themeConfig.drawer" :with-header="false" :destroy-on-close="true">
       <div class="drawer-item">
         <span class="demonstration">暗黑模式：</span>
-        <el-switch v-model="colorInfo.theme" @change="themeChange" />
+        <el-switch v-model="themeConfig.theme" @change="themeChange" />
       </div>
       <div class="drawer-item">
         <span class="demonstration">主题色设置：</span>
-        <el-color-picker v-model="colorInfo.primaryColor" @change="colorChange" />
+        <el-color-picker v-model="themeConfig.primaryColor" @change="colorChange" />
       </div>
       <div class="drawer-item">
         <span class="demonstration">灰色模式：</span>
-        <el-switch v-model="colorInfo.gray" @change="grayChange" />
+        <el-switch v-model="themeConfig.gray" @change="grayChange" />
       </div>
     </el-drawer>
   </div>
@@ -55,12 +55,12 @@
 <script setup>
 import { useSettingStore } from '@/stores/modules/setting'
 import { useRouter } from 'vue-router'
-import { ref, reactive, toRefs, computed } from 'vue'
+import { ref, reactive } from 'vue'
 import vBreadcrumb from '@/components/breadcrumb/index.vue'
 const settingStore = useSettingStore()
 const router = useRouter()
 
-const colorInfo = reactive({
+const themeConfig = reactive({
   drawer: false,
   theme: false, // 暗黑模式
   primaryColor: '', // 主题色
@@ -87,8 +87,8 @@ const themeChange = val => {
 }
 
 const setting = () => {
-  colorInfo.primaryColor = computed(() => settingStore.primaryColor).value
-  colorInfo.drawer = true
+  themeConfig.primaryColor = settingStore.primaryColor
+  themeConfig.drawer = true
 }
 
 const colorChange = color => {

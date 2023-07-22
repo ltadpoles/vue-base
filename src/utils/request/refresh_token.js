@@ -1,6 +1,5 @@
 import { refreshToken } from '@/api/base'
 import { useUserStore } from '@/stores/modules/user'
-import { computed } from 'vue'
 
 // 是否正在刷新的标记
 let isRefreshing = false
@@ -10,7 +9,7 @@ let requests = []
 export const refresh_token = (http, config) => {
   // 如果没有在刷新
   const userStore = useUserStore()
-  const token = computed(() => userStore.token)
+  const token = userStore.token.token
   if (!isRefreshing) {
     isRefreshing = true
     if (!token.refresh_token) {

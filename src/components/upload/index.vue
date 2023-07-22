@@ -43,7 +43,7 @@
 </template>
 
 <script setup>
-import { computed, onBeforeMount, ref, toRefs } from 'vue'
+import { onBeforeMount, ref, toRefs } from 'vue'
 import { useUserStore } from '@/stores/modules/user'
 
 const userStore = useUserStore()
@@ -61,11 +61,11 @@ const props = defineProps({
   // 请求头
   headers: {
     type: Object,
-    default: () => {
-      return {
-        Authorization: computed(() => userStore.token.token)
-      }
-    }
+    // default: () => {
+    //   return {
+    //     Authorization: userStore.token.token
+    //   }
+    // }
   },
   // 上传按钮文字
   btnText: {
