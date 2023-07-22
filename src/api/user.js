@@ -1,3 +1,3 @@
-import http from '@/utils/request'
+import http from '@/utils/http'
 
 export const getUserList = () => {}
