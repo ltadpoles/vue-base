@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Layout from '../views/Layout/index.vue'
 import { useUserStore } from '../stores/modules/user'
+import userRoute from './modules/user'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -16,52 +17,20 @@ const router = createRouter({
           meta: { title: '首页' },
           component: () => import('@/views/dashboard/index.vue')
         },
-        {
-          path: 'more',
-          name: 'More',
-          meta: { title: '多层' },
-          children: [
-            {
-              path: 'list',
-              name: 'MoreList',
-              meta: { title: '列表' },
-              component: () => import('@/views/more/list.vue')
-            }
-          ]
-        },
-        {
-          path: 'user',
-          name: 'User',
-          meta: { title: '用户管理' },
-          children: [
-            {
-              path: 'sec',
-              name: 'UserSec',
-              meta: { title: '二级' },
-              children: [
-                {
-                  path: 'about',
-                  name: 'UserSecAbout',
-                  meta: { title: '三级' },
-                  component: () => import('@/views/user/about.vue')
-                }
-              ]
-            },
-            {
-              path: 'two',
-              name: 'UserTwo',
-              meta: { title: '二级1号' },
-              children: [
-                {
-                  path: 'about1',
-                  name: 'UserTwoAbout1',
-                  meta: { title: '三级1号' },
-                  component: () => import('@/views/user/about1.vue')
-                }
-              ]
-            }
-          ]
-        }
+        // {
+        //   path: 'more',
+        //   name: 'More',
+        //   meta: { title: '多层' },
+        //   children: [
+        //     {
+        //       path: 'list',
+        //       name: 'MoreList',
+        //       meta: { title: '列表' },
+        //       component: () => import('@/views/more/list.vue')
+        //     }
+        //   ]
+        // },
+        ...userRoute
       ]
     },
     {
@@ -72,7 +41,17 @@ const router = createRouter({
   ],
   scrollBehavior(to, from, savedPosition) {
     // return 期望滚动到哪个的位置
-    return { top: 0 }
+    // return { top: 0 }
+    return new Promise(resolve => {
+      if (savedPosition) {
+        return savedPosition
+      } else {
+        if (from.meta.saveSrollTop) {
+          const top = document.documentElement.scrollTop || document.body.scrollTop
+          resolve({ left: 0, top })
+        }
+      }
+    })
   }
 })
 

@@ -1,3 +1,1 @@
-export const ENV = {
-  MODE: import.meta.env.MODE
-}
+export const ENV = {}

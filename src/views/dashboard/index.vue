@@ -10,11 +10,13 @@
         :drag="true"
       />
     </div>
+    <el-button @click="addRoute">添加路由</el-button>
   </div>
 </template>
 
 <script setup>
 import vUpload from '@/components/upload/index.vue'
+import router from '@/router'
 
 const fileSuccess = file => {
   console.log(file)
@@ -22,5 +24,15 @@ const fileSuccess = file => {
 
 const fileRemove = fileList => {
   console.log('删除了啊', fileList)
+}
+
+const addRoute = async () => {
+  await router.addRoute('Layout', {
+    path: '/uruu',
+    name: 'uruu',
+    components: () => import('@/views/more/list.vue')
+  })
+  console.log(router.getRoutes())
+  router.push('/uruu')
 }
 </script>
