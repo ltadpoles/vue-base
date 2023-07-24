@@ -1,7 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Layout from '../views/Layout/index.vue'
+import Layout from '../views/layout/index.vue'
 import { useUserStore } from '../stores/modules/user'
 import userRoute from './modules/user'
+import aboutRoute from './modules/about'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -16,23 +17,11 @@ const router = createRouter({
           name: 'Dashboard',
           meta: { title: '首页' },
           component: () => import('@/views/dashboard/index.vue')
-        },
-        // {
-        //   path: 'more',
-        //   name: 'More',
-        //   meta: { title: '多层' },
-        //   children: [
-        //     {
-        //       path: 'list',
-        //       name: 'MoreList',
-        //       meta: { title: '列表' },
-        //       component: () => import('@/views/more/list.vue')
-        //     }
-        //   ]
-        // },
-        ...userRoute
+        }
       ]
     },
+    ...userRoute,
+    ...aboutRoute,
     {
       path: '/login',
       name: 'Login',
@@ -41,7 +30,6 @@ const router = createRouter({
   ],
   scrollBehavior(to, from, savedPosition) {
     // return 期望滚动到哪个的位置
-    // return { top: 0 }
     return new Promise(resolve => {
       if (savedPosition) {
         return savedPosition

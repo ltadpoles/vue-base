@@ -1,8 +1,9 @@
 const routes = [
   {
-    path: 'user',
+    path: '/user',
     name: 'User',
     meta: { title: '用户管理' },
+    component: () => import('@/views/layout/index.vue'),
     children: [
       {
         path: 'sec',
