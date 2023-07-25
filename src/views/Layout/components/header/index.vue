@@ -22,7 +22,7 @@
               <el-icon><User /></el-icon>
               <span>个人中心</span>
             </el-dropdown-item>
-            <el-dropdown-item command="/user/sec/about" @click="setting">
+            <el-dropdown-item @click="setting">
               <el-icon><Setting /></el-icon>
               <span>设置</span>
             </el-dropdown-item>

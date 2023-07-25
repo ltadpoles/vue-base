@@ -27,9 +27,9 @@
 </template>
 
 <script setup>
-import vHeader from '@/views/layout/components/header/index.vue'
-import vSidebar from '@/views/layout/components/sidebar/index.vue'
-import vFooter from '@/views/layout/components/footer/index.vue'
+import vHeader from './components/header/index.vue'
+import vSidebar from './components/sidebar/index.vue'
+import vFooter from './components/footer/index.vue'
 import { useSettingStore } from '@/stores/modules/setting'
 
 const settingStore = useSettingStore()
