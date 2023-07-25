@@ -6,6 +6,7 @@ import router from './router'
 
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
+import './router/init'
 import './assets/styles/main.less'
 
 const app = createApp(App)
