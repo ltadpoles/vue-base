@@ -1,10 +1,6 @@
 /*
- * @Author: tadpole
- * @Date: 2023-07-21 17:38:30
- * @LastEditTime: 2023-07-21 18:21:57
  * @Description: 项目配置store
  */
-
 import { defineStore } from 'pinia'
 
 export const useSettingStore = defineStore('settingStore', {

@@ -21,6 +21,11 @@ export const staticRoute = [
     path: '/500',
     name: 'Error500',
     component: () => import('@/views/error/500.vue')
+  },
+  {
+    path: '/',
+    name: 'Error500',
+    component: () => import('@/views/error/500.vue')
   }
 ]
 

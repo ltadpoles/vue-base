@@ -1,5 +1,5 @@
-import { refreshToken } from '@/api/base'
 import { useUserStore } from '@/stores/modules/user'
+import { refreshToken } from '@/api/user'
 
 // 是否正在刷新的标记
 let isRefreshing = false
