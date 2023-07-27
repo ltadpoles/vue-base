@@ -10,6 +10,7 @@ import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 
 export default defineConfig({
   envDir: 'env',
+  // base: '/test/',
   plugins: [
     vue(),
     // 组件命名插件
@@ -25,6 +26,9 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  build: {
+    assetsDir: 'static'
   },
   server: {
     // 代理

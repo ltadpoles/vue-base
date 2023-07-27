@@ -8,7 +8,7 @@ import { notFoundRouter } from './static'
 import { useSettingStore } from '../stores/modules/setting'
 
 // 获取前端注册所有动态路由
-const modules = await import.meta.glob('./modules/*.js', { eager: true })
+const modules = import.meta.glob('./modules/*.js', { eager: true })
 const allAsyncRoutes = []
 for (const path in modules) {
   allAsyncRoutes.push(...modules[path].default)
