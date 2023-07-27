@@ -9,71 +9,22 @@
     </div>
 
     <el-menu router :default-active="route.path" :unique-opened="true" :collapse="settingStore.isCollapsed">
-      <menu-tree :menu="menu" />
+      <menu-tree :menu="authStore.menu" />
     </el-menu>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
 import MenuTree from '../menu/index.vue'
 import { useSettingStore } from '@/stores/modules/setting'
 
 import { useRoute } from 'vue-router'
+import { useAuthStore } from '../../../../stores/modules/auth'
 
 const settingStore = useSettingStore()
+const authStore = useAuthStore()
 
 const route = useRoute()
-
-const menu = ref([
-  {
-    name: '首页',
-    id: '01',
-    icon: 'Avatar',
-    url: '/dashboard'
-  },
-  {
-    name: '多层',
-    id: '02',
-    icon: 'Location',
-    children: [
-      {
-        name: '列表',
-        id: '020',
-        url: '/more/list'
-      }
-    ]
-  },
-  {
-    name: '用户管理',
-    id: '01',
-    icon: 'HomeFilled',
-    children: [
-      {
-        id: '010',
-        name: '二级',
-        children: [
-          {
-            id: '0110',
-            name: '三级',
-            url: '/user/sec/about'
-          }
-        ]
-      },
-      {
-        id: '011',
-        name: '二级1号',
-        children: [
-          {
-            id: '0111',
-            name: '三级1号',
-            url: '/user/two/about1'
-          }
-        ]
-      }
-    ]
-  }
-])
 </script>
 
 <style lang="less" scoped>

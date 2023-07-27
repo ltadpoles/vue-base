@@ -4,13 +4,13 @@ const routes = [
     name: 'More',
     meta: { title: '多级导航' },
     redirect: '/more/list',
-    comments: () => import('@/views/layout/index.vue'),
+    component: () => import('@/views/layout/index.vue'),
     children: [
       {
         path: 'list',
         name: 'MoreList',
         meta: { title: '多级列表' },
-        comments: () => import('@/views/more/list.vue')
+        component: () => import('@/views/more/list.vue')
       },
       {
         path: 'two',
@@ -21,7 +21,7 @@ const routes = [
             path: 'list',
             name: 'MoreTwoList',
             meta: { title: '二层列表' },
-            component: () => import('@/views/more/two/list')
+            component: () => import('@/views/more/two/list.vue')
           }
         ]
       }

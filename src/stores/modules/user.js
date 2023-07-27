@@ -4,6 +4,7 @@
 import { defineStore } from 'pinia'
 import { getUserInfo } from '@/api/user'
 import { useAuthStore } from './auth'
+import { ENV } from '@/config'
 
 export const useUserStore = defineStore('userStore', {
   state: () => ({
@@ -29,6 +30,6 @@ export const useUserStore = defineStore('userStore', {
   },
   // 持久化存储
   persist: {
-    storage: sessionStorage
+    storage: ENV.PINIASTORY
   }
 })

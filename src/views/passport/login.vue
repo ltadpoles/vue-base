@@ -21,9 +21,9 @@ const login = async () => {
 
   userStore.setToken(data)
 
-  setTimeout(() => {
+  setTimeout(async () => {
     loading.value = false
-    router.replace(route.query.redirect || '/')
-  }, 3000)
+    await router.replace(route.query.redirect || '/')
+  }, 1000)
 }
 </script>

@@ -57,6 +57,7 @@ import { useSettingStore } from '@/stores/modules/setting'
 import { useRouter } from 'vue-router'
 import { ref, reactive } from 'vue'
 import vBreadcrumb from '@/components/breadcrumb/index.vue'
+import { RESETSTORE } from '@/stores/reset'
 const settingStore = useSettingStore()
 const router = useRouter()
 
@@ -109,7 +110,7 @@ const grayChange = val => {
 
 const logout = () => {
   // 清空 pinia 存储
-  settingStore.$reset()
+  RESETSTORE()
   router.replace('/login')
   ElMessage({
     message: '退出登录',

@@ -1,8 +1,7 @@
 import axios from 'axios'
 import { refresh_token } from './refresh_token'
-import { useUserStore } from '../../stores/modules/user'
-
-let isRefreshToken = false // 是否需要开启 token 刷新, 默认不开启
+import { useUserStore } from '@/stores/modules/user'
+import { ENV } from '@/config'
 
 const http = axios.create()
 
@@ -45,7 +44,7 @@ http.interceptors.response.use(
           type: 'error'
         })
       case 401:
-        if (isRefreshToken) {
+        if (ENV.ISREFRESHTOKEN) {
           refresh_token(http, error.response.config)
         } else {
           ElMessage({

@@ -18,7 +18,9 @@ watch(
   () => route.path,
   () => {
     let arr = JSON.parse(JSON.stringify(route.matched))
-    arr.shift()
+    let index = arr.findIndex(item => !item.meta.title)
+
+    if (index > -1) arr.splice(index, 1)
     breadCrumbList.value = arr
   },
   { immediate: true, deep: true }

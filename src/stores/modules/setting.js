@@ -6,7 +6,8 @@ import { defineStore } from 'pinia'
 export const useSettingStore = defineStore('settingStore', {
   state: () => ({
     isCollapsed: false, // 菜单收缩控制
-    primaryColor: '#409eff' // 项目主题色
+    primaryColor: '#409eff', // 项目主题色
+    asyncRouteList: [] // 动态路由数组
   }),
   actions: {
     increment() {
@@ -19,6 +20,9 @@ export const useSettingStore = defineStore('settingStore', {
       getComputedStyle(el).getPropertyValue(`--el-color-primary`)
       // 设置 css 变量
       el.style.setProperty('--el-color-primary', color)
+    },
+    setRouteList(list) {
+      this.asyncRouteList = list
     }
   }
 })

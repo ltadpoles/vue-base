@@ -14,33 +14,33 @@ export const getUserInfo = () => {
     data: {
       menu: [
         {
-          path: '/',
+          path: '/dashboard',
           name: '首页',
-          route: 'Index',
+          routeName: 'Dashboard',
           icon: 'Histogram'
         },
         {
           path: '/user',
           name: '用户管理',
-          route: 'User',
+          routeName: 'User',
           icon: 'User',
           children: [
             {
               path: '/user/list',
               name: '用户列表',
-              route: 'UserList',
+              routeName: 'UserList',
               icon: ''
             },
             {
               path: '/user/lock',
               name: '用户权限',
-              route: 'UserLock',
+              routeName: 'UserLock',
               icon: ''
             },
             {
               path: '/user/aim',
               name: '用户角色',
-              route: 'UserAim',
+              routeName: 'UserAim',
               icon: ''
             }
           ]
@@ -48,25 +48,25 @@ export const getUserInfo = () => {
         {
           path: '/more',
           name: '多级导航',
-          route: 'More',
+          routeName: 'More',
           icon: 'FolderOpened',
           children: [
             {
               path: '/more/list',
               name: '多级列表',
-              route: 'MoreList',
+              routeName: 'MoreList',
               icon: ''
             },
             {
               path: '/more/two',
               name: '多级二层',
-              route: 'MoreTwo',
+              routeName: 'MoreTwo',
               icon: '',
               children: [
                 {
                   path: '/more/two/list',
                   name: '二层列表',
-                  route: 'MoreTwoList',
+                  routeName: 'MoreTwoList',
                   icon: ''
                 }
               ]

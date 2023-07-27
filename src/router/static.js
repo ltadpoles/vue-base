@@ -3,6 +3,20 @@
  */
 export const staticRoute = [
   {
+    path: '/',
+    meta: { title: '首页' },
+    name: 'Index',
+    redirect: '/dashboard',
+    component: () => import('@/views/layout/index.vue'),
+    children: [
+      {
+        path: 'dashboard',
+        name: 'Dashboard',
+        component: () => import('@/views/dashboard/index.vue')
+      }
+    ]
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import('@/views/passport/login.vue')
@@ -19,11 +33,6 @@ export const staticRoute = [
   },
   {
     path: '/500',
-    name: 'Error500',
-    component: () => import('@/views/error/500.vue')
-  },
-  {
-    path: '/',
     name: 'Error500',
     component: () => import('@/views/error/500.vue')
   }

@@ -1,3 +1,4 @@
+import { ENV } from '../config'
 import { useAuthStore } from './modules/auth'
 import { useUserStore } from './modules/user'
 
@@ -11,5 +12,5 @@ export const RESETSTORE = () => {
   userStore.$reset()
   authStore.$reset()
 
-  // sessionStorage
+  ENV.PINIASTORY.clear()
 }

@@ -2,6 +2,7 @@
  * @Description: 用户权限store
  */
 import { defineStore } from 'pinia'
+import { ENV } from '@/config'
 
 export const useAuthStore = defineStore('authStore', {
   state: () => ({
@@ -22,6 +23,6 @@ export const useAuthStore = defineStore('authStore', {
   },
   // 持久化存储
   persist: {
-    storage: sessionStorage
+    storage: ENV.PINIASTORY
   }
 })
