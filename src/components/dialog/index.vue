@@ -74,7 +74,7 @@ const props = defineProps({
 
 const emit = defineEmits(['close'])
 
-// // props 不支持 v-modal 绑定的值，所以这里使用 watch 的方式添加一个变量
+// props 不支持 v-modal 绑定的值，所以这里使用 watch 的方式添加一个变量
 watch(
   () => props.isShow,
   val => {

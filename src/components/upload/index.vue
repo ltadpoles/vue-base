@@ -46,8 +46,6 @@
 import { onBeforeMount, ref, toRefs } from 'vue'
 import { useUserStore } from '@/stores/modules/user'
 
-const userStore = useUserStore()
-
 const dialogVisible = ref(false)
 const dialogImageUrl = ref('')
 const listLocalType = ref('text')
@@ -61,11 +59,12 @@ const props = defineProps({
   // 请求头
   headers: {
     type: Object,
-    // default: () => {
-    //   return {
-    //     Authorization: userStore.token.token
-    //   }
-    // }
+    default: () => {
+      return {
+        // 这里不能用变量定义 useUserStore 之后再引用，存在提升
+        Authorization: useUserStore().token.token
+      }
+    }
   },
   // 上传按钮文字
   btnText: {

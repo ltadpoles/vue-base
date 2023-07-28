@@ -24,8 +24,7 @@ const route = useRoute()
 
 <style lang="less" scoped>
 .sidebar {
-  box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.2);
-  // height: 100%;
+  box-shadow: var(--el-box-shadow);
   height: 100vh;
 
   .el-menu {

@@ -9,14 +9,28 @@
         :drag="true"
       />
     </div>
+    <el-button @click="shouDialog">打开dialog</el-button>
+    <v-dialog :isShow="isShow" @close="close" :fullscreen="true" />
   </div>
 </template>
 
 <script setup>
 import vUpload from '@/components/upload/index.vue'
+import vDialog from '@/components/dialog/index.vue'
+import { ref } from 'vue'
+
+const isShow = ref(false)
 
 const fileSuccess = file => {
   console.log(file)
+}
+
+const shouDialog = () => {
+  isShow.value = true
+}
+
+const close = val => {
+  isShow.value = val
 }
 
 const fileRemove = fileList => {
