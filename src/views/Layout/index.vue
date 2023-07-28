@@ -11,7 +11,7 @@
         <v-header />
       </section>
       <section>
-        <el-scrollbar class="content-views">
+        <el-scrollbar class="content-views" wrap-class="wrap-sty">
           <router-view v-slot="{ Component }">
             <transition name="slide-fade">
               <component :is="Component" />
@@ -19,9 +19,6 @@
           </router-view>
         </el-scrollbar>
       </section>
-      <!-- <section class="v-footer">
-        <v-footer />
-      </section> -->
     </section>
   </div>
 </template>
@@ -29,7 +26,6 @@
 <script setup>
 import vHeader from './components/header/index.vue'
 import vSidebar from './components/sidebar/index.vue'
-import vFooter from './components/footer/index.vue'
 import { useSettingStore } from '@/stores/modules/setting'
 
 const settingStore = useSettingStore()
@@ -59,11 +55,19 @@ const settingStore = useSettingStore()
   .layout-right {
     flex: 1;
     .content-views {
-      height: calc(100vh - 113px);
+      height: calc(100vh - 68px);
       padding: 15px;
       box-sizing: border-box;
-      overflow-x: hidden;
     }
+  }
+}
+</style>
+
+<style lang="less">
+/** 解决横向滚动条问题 */
+.wrap-sty {
+  .el-scrollbar__view {
+    overflow-x: hidden;
   }
 }
 </style>
