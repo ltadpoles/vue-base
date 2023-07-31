@@ -20,9 +20,17 @@
     "vue-router": "^4.2.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.22.9",
+    "@babel/eslint-parser": "^7.22.9",
+    "eslint": "^8.46.0",
+    "eslint-config-prettier": "^8.9.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-vue": "^9.16.1",
+    "prettier": "^3.0.0",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-vue-components": "^0.25.1",
     "vite": "^4.3.9",
+    "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-vue-setup-extend": "^0.4.0"
   }
 }
