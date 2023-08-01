@@ -1,4 +1,3 @@
 <template>
-    <div>用户权限</div>
-  </template>
-  
+  <div>用户权限</div>
+</template>

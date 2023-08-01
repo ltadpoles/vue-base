@@ -24,7 +24,9 @@ export const getRouteNameList = (menu, routeName) => {
 export const filterAsyncRoutes = (allAsyncRoutes, authRouterList) => {
   return allAsyncRoutes.filter(route => {
     // 1.如果route的name在authRouterList中没有, 直接过滤掉
-    if (!authRouterList.includes(route.name)) return false
+    if (!authRouterList.includes(route.name)) {
+      return false
+    }
 
     // 2.如果当前route还有子路由(也就是有children), 需要对子路由也进行权限过滤
     if (route.children && route.children.length > 0) {

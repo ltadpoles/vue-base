@@ -1,10 +1,10 @@
-import http from '@/utils/http'
+// import http from '@/utils/http'
 
 export const loginIn = () => {
   return {
     data: {
       token: '123456',
-      refresh_token: '654321'
+      refreshToken: '654321'
     }
   }
 }
@@ -82,4 +82,6 @@ export const getUserInfo = () => {
   }
 }
 
-export const refreshToken = () => {}
+export const refreshToken = (token) => {
+  return token
+}

@@ -6,6 +6,7 @@ import { RESETSTORE } from '../stores/reset'
 import { filterAsyncRoutes, getRouteNameList } from './utils'
 import { notFoundRouter } from './static'
 import { useSettingStore } from '../stores/modules/setting'
+import {ElNotification} from 'element-plus'
 
 // 获取前端注册所有动态路由
 const modules = import.meta.glob('./modules/*.js', { eager: true })
@@ -22,12 +23,16 @@ router.beforeEach(async (to, from, next) => {
 
   if (to.path === ENV.LOGIN_URL) {
     // 如果存在 token 不能返回登录页面
-    if (userStore.token.token) return next(from.fullPath)
-    else return next()
+    if (userStore.token.token) {
+      return next(from.fullPath)
+    }
+    return next()
   }
 
   // 如果跳转地址是白名单地址，直接跳转
-  if (ENV.ROUTER_WHITE_LIST.includes(to.path)) return next()
+  if (ENV.ROUTER_WHITE_LIST.includes(to.path)) {
+    return next()
+  }
 
   // 如果没有 token 跳转到登录页面并且携带当前页面路径
   if (!userStore.token.token) {
@@ -57,7 +62,7 @@ router.beforeEach(async (to, from, next) => {
 /**
  * @description 每次导航之后被执行。返回一个用来移除该钩子的函数
  */
-router.afterEach((to, from) => {})
+// router.afterEach((to, from) => {})
 
 /**
  * @description 每次导航遇到未被捕获的错误出现时被调用

@@ -2,9 +2,11 @@
   <div class="header">
     <div class="header-left">
       <el-icon :size="20" class="cursor-icon" v-show="!settingStore.isCollapsed" @click="flodClick">
+        <!-- eslint-disable vue/require-component-is -->
         <component is="Fold" />
       </el-icon>
       <el-icon :size="20" class="cursor-icon" v-show="settingStore.isCollapsed" @click="flodClick">
+        <!-- eslint-disable vue/require-component-is -->
         <component is="Expand" />
       </el-icon>
 
@@ -19,15 +21,21 @@
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item command="/dashboard">
-              <el-icon><User /></el-icon>
+              <el-icon>
+                <User />
+              </el-icon>
               <span>个人中心</span>
             </el-dropdown-item>
             <el-dropdown-item @click="setting">
-              <el-icon><Setting /></el-icon>
+              <el-icon>
+                <Setting />
+              </el-icon>
               <span>设置</span>
             </el-dropdown-item>
             <el-dropdown-item divided command="/login" @click="logout">
-              <el-icon><SwitchButton /></el-icon>
+              <el-icon>
+                <SwitchButton />
+              </el-icon>
               <span>退出登录</span>
             </el-dropdown-item>
           </el-dropdown-menu>
@@ -58,6 +66,7 @@ import { useRouter } from 'vue-router'
 import { ref, reactive } from 'vue'
 import vBreadcrumb from '@/components/breadcrumb/index.vue'
 import { RESETSTORE } from '@/stores/reset'
+import { ElMessage } from 'element-plus'
 const settingStore = useSettingStore()
 const router = useRouter()
 
@@ -127,9 +136,11 @@ const logout = () => {
   height: 68px;
   padding: 0 30px;
   border-bottom: 1px solid var(--el-border-color);
+
   .header-left {
     display: flex;
     align-items: center;
+
     .breadcrumb-sty {
       margin-left: 15px;
     }
@@ -142,6 +153,7 @@ const logout = () => {
     .header-right-theme {
       margin-right: 10px;
     }
+
     .header-right-user {
       display: flex;
       align-items: center;

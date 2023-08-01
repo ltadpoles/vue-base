@@ -8,7 +8,7 @@ const router = createRouter({
     // return 期望滚动到哪个的位置
     return new Promise(resolve => {
       if (savedPosition) {
-        return savedPosition
+        resolve(savedPosition)
       } else {
         if (from.meta.saveSrollTop) {
           const top = document.documentElement.scrollTop || document.body.scrollTop

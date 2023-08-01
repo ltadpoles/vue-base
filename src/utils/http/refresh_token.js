@@ -12,7 +12,7 @@ export const refresh_token = (http, config) => {
   const token = userStore.token.token
   if (!isRefreshing) {
     isRefreshing = true
-    if (!token.refresh_token) {
+    if (!token.refreshToken) {
       // 清空本地缓存
       userStore.$reset()
       return ElMessage({
@@ -20,7 +20,7 @@ export const refresh_token = (http, config) => {
         type: 'error'
       })
     } else {
-      refreshToken(token.refresh_token)
+      refreshToken(token.refreshToken)
         .then(res => {
           userStore.setToken(res.data)
           // 已经刷新了token，将所有队列中的请求进行重试

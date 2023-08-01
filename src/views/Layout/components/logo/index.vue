@@ -1,6 +1,7 @@
 <template>
   <div class="logo">
     <el-icon :size="20">
+      <!-- eslint-disable vue/require-component-is -->
       <component is="Shop" />
     </el-icon>
 
@@ -17,6 +18,7 @@ const settingStore = useSettingStore()
   display: flex;
   justify-content: center;
   align-items: center;
+
   .admin-title {
     margin-left: 8px;
   }

@@ -13,12 +13,13 @@
     destroy-on-close
     @close="close"
   >
-    <slot />
+    <slot ></slot>
   </el-dialog>
 </template>
 
 <script setup>
 import { watch, ref } from 'vue'
+import {ElMessageBox} from 'element-plus'
 
 const dialogVisible = ref(false)
 
@@ -26,7 +27,6 @@ const props = defineProps({
   // 是否显示 Dialog
   isShow: {
     type: Boolean,
-    default: false
   },
   // 是否有二次确认关闭提示
   confirmCancel: {
@@ -92,7 +92,9 @@ const beforeClose = done => {
       .then(() => {
         done()
       })
-      .catch(() => {})
+      .catch(() => {
+        Promise.reject('弹窗关闭')
+      })
   } else {
     done()
   }
