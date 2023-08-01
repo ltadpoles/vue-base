@@ -1,32 +1,32 @@
 <template>
-  <el-upload
-    ref="elUpload"
-    :file-list="fileList"
-    :action="action"
-    :headers="headers"
-    :disabled="disabled"
-    :multiple="multiple"
-    :data="data"
-    :name="name"
-    :accept="accept"
-    :fileSize="fileSize"
-    :limit="limit"
-    :list-type="listLocalType"
-    :drag="drag"
-    :show-file-list="isShowFileList"
-    :on-preview="onPreview"
-    :on-remove="onRemove"
-    :before-remove="beforeRemove"
-    :before-upload="beforeUpload"
-    :on-success="onSuccess"
-    :on-error="onError"
-    :on-progress="onProgress"
-    :on-exceed="onExceed"
-    :on-change="onChange"
-  >
+  <el-upload ref="elUpload"
+             :file-list="fileList"
+             :action="action"
+             :headers="headers"
+             :disabled="disabled"
+             :multiple="multiple"
+             :data="data"
+             :name="name"
+             :accept="accept"
+             :fileSize="fileSize"
+             :limit="limit"
+             :list-type="listLocalType"
+             :drag="drag"
+             :show-file-list="isShowFileList"
+             :on-preview="onPreview"
+             :on-remove="onRemove"
+             :before-remove="beforeRemove"
+             :before-upload="beforeUpload"
+             :on-success="onSuccess"
+             :on-error="onError"
+             :on-progress="onProgress"
+             :on-exceed="onExceed"
+             :on-change="onChange">
     <template v-if="!drag">
-      <el-button type="primary" v-if="listLocalType == 'text' || listLocalType == 'picture'">{{ btnText }}</el-button>
-      <el-icon v-else><Plus /></el-icon>
+      <el-button type="primary" v-if="listLocalType === 'text' || listLocalType === 'picture'">{{ btnText }}</el-button>
+      <el-icon v-else>
+        <Plus />
+      </el-icon>
     </template>
     <template v-else>
       <el-icon class="el-icon--upload"><upload-filled /></el-icon>
@@ -45,6 +45,7 @@
 <script setup>
 import { onBeforeMount, ref, toRefs } from 'vue'
 import { useUserStore } from '@/stores/modules/user'
+import { ElMessage, ElMessageBox } from 'element-plus'
 
 const dialogVisible = ref(false)
 const dialogImageUrl = ref('')
@@ -74,7 +75,9 @@ const props = defineProps({
   // 默认上传文件，可用于回显
   fileList: {
     type: Array,
-    default: []
+    default: () => {
+      return []
+    }
   },
   // 是否有tip提示
   showTip: {
@@ -99,7 +102,9 @@ const props = defineProps({
   // 上传时附带的额外参数
   data: {
     type: Object,
-    default: {}
+    default: () => {
+      return {}
+    }
   },
   // 上传的文件字段名
   name: {
@@ -136,6 +141,9 @@ const props = defineProps({
   // 	文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用
   onChange: {
     type: Function
+  },
+  onProgress: {
+    type: Function
   }
 })
 
@@ -159,7 +167,7 @@ const onSuccess = response => {
 // 文件删除
 const onRemove = (file, fileList) => {
   // 防止 beforeUpload 阻止上传调用
-  if (file && file.status == 'success') {
+  if (file && file.status === 'success') {
     emit('fileRemove', fileList)
   }
 }
@@ -190,7 +198,7 @@ const onPreview = evt => {
 // 删除文件之前的钩子，参数为上传的文件和文件列表， 若返回 false 或者返回 Promise 且被 reject，则停止删除
 const beforeRemove = file => {
   // 防止 beforeUpload 阻止上传调用
-  if (file && file.status == 'success') {
+  if (file && file.status === 'success') {
     return ElMessageBox.confirm(`确认删除 ${file.name} ?`, '提示', {
       confirmButtonText: '确定',
       cancelButtonText: '取消',
@@ -237,9 +245,5 @@ const beforeUpload = rawFile => {
   return true
 }
 
-// 文件上传中的钩子，获取进度等
-const onProgress = evt => {}
 
-// 	文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用
-const onChange = (file, fileList) => {}
 </script>

@@ -19,7 +19,7 @@ module.exports = {
     ecmaVersion: 13,
     sourceType: 'module',
     parser: '@babel/eslint-parser',
-    "requireConfigFile": false,
+    requireConfigFile: false,
     ecmaFeatures: {
       modules: true,
       jsx: true
@@ -34,20 +34,20 @@ module.exports = {
   },
   rules: {
     semi: ['warn', 'never'], // 禁止尾部使用分号
-    'no-console': 'warn', // 禁止出现console
-    'no-debugger': 'warn', // 禁止出现debugger
-    'no-duplicate-case': 'warn', // 禁止出现重复case
-    'no-empty': 'warn', // 禁止出现空语句块
-    'no-extra-parens': 'warn', // 禁止不必要的括号
-    'no-func-assign': 'warn', // 禁止对Function声明重新赋值
-    'no-unreachable': 'warn', // 禁止出现[return|throw]之后的代码块
-    'no-else-return': 'warn', // 禁止if语句中return语句之后有else块
-    'no-empty-function': 'warn', // 禁止出现空的函数块
-    'no-lone-blocks': 'warn', // 禁用不必要的嵌套块
+    'no-console': 'error', // 禁止出现console
+    'no-debugger': 'error', // 禁止出现debugger
+    'no-duplicate-case': 'error', // 禁止出现重复case
+    'no-empty': 'error', // 禁止出现空语句块
+    'no-extra-parens': 'error', // 禁止不必要的括号
+    'no-func-assign': 'error', // 禁止对Function声明重新赋值
+    'no-unreachable': 'error', // 禁止出现[return|throw]之后的代码块
+    'no-else-return': 'error', // 禁止if语句中return语句之后有else块
+    'no-empty-function': 'error', // 禁止出现空的函数块
+    'no-lone-blocks': 'error', // 禁用不必要的嵌套块
     'no-multi-spaces': 'warn', // 禁止使用多个空格
-    'no-redeclare': 'warn', // 禁止多次声明同一变量
-    'no-return-assign': 'warn', // 禁止在return语句中使用赋值语句
-    'no-return-await': 'warn', // 禁用不必要的[return/await]
+    'no-redeclare': 'error', // 禁止多次声明同一变量
+    'no-return-assign': 'error', // 禁止在return语句中使用赋值语句
+    'no-return-await': 'error', // 禁用不必要的[return/await]
     'no-self-compare': 'warn', // 禁止自身比较表达式
     'no-useless-catch': 'warn', // 禁止不必要的catch子句
     'no-useless-return': 'warn', // 禁止不必要的return语句
@@ -107,6 +107,6 @@ module.exports = {
         math: 'always'
       }
     ],
-    "vue/multi-word-component-names": "off"
+    'vue/multi-word-component-names': 'off'
   }
 }
