@@ -6,7 +6,9 @@ import { RESETSTORE } from '../stores/reset'
 import { filterAsyncRoutes, getRouteNameList } from './utils'
 import { notFoundRouter } from './static'
 import { useSettingStore } from '../stores/modules/setting'
-import {ElNotification} from 'element-plus'
+import { ElNotification } from 'element-plus'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 // 获取前端注册所有动态路由
 const modules = import.meta.glob('./modules/*.js', { eager: true })
@@ -62,12 +64,15 @@ router.beforeEach(async (to, from, next) => {
 /**
  * @description 每次导航之后被执行。返回一个用来移除该钩子的函数
  */
-// router.afterEach((to, from) => {})
+router.afterEach(() => {
+  NProgress.done()
+})
 
 /**
  * @description 每次导航遇到未被捕获的错误出现时被调用
  */
 router.onError(error => {
+  NProgress.done()
   Promise.reject('路由跳转错误', error.message)
 })
 
