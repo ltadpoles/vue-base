@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <v-dialog :isShow="isShow" @close="close" :fullscreen="true" />
   </div>
 </template>
