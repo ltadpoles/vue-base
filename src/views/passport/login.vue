@@ -1,14 +1,32 @@
 <template>
   <div class="login">
-    <div class="login-mask">
-      <el-button type="primary" @click="login" :loading="loading">登录</el-button>
+    <div class="login-content">
+      <div class="login-content-logo">
+        <img src="@/assets/images/login.svg" alt="" />
+      </div>
+      <div class="login-content-form">
+        <h1>后台管理系统</h1>
+        <el-form ref="loginFormRef" :model="loginForm" :rules="rules" class="demo-loginForm" status-icon>
+          <el-form-item label="" prop="name">
+            <el-input v-model="loginForm.name" placeholder="请输入账号" prefix-icon="User" />
+          </el-form-item>
+          <el-form-item label="" prop="password">
+            <el-input v-model="loginForm.password" placeholder="请输入密码" type="password" prefix-icon="Lock" />
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" round :loading="loading" class="login-btn" @click="login(loginFormRef)">
+              登录
+            </el-button>
+          </el-form-item>
+        </el-form>
+        <div class="forgot-password">忘记密码</div>
+      </div>
     </div>
-
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 import { loginIn } from '@/api/user'
 import { useUserStore } from '@/stores/modules/user'
 import { useRouter, useRoute } from 'vue-router'
@@ -17,17 +35,39 @@ const router = useRouter()
 const route = useRoute()
 
 const loading = ref(false)
-const login = async () => {
-  loading.value = true
-  const { data } = await loginIn()
-  const userStore = useUserStore()
+const loginFormRef = ref()
 
-  userStore.setToken(data)
+const loginForm = reactive({
+  username: '',
+  password: ''
+})
 
-  setTimeout(async () => {
-    loading.value = false
-    await router.replace(route.query.redirect || '/')
-  }, 1000)
+const rules = ref({
+  name: [{ required: true, message: '请输入账号', trigger: 'blur' }],
+  password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
+})
+
+const login = async (formEl) => {
+  if (!formEl) {
+    return
+  }
+
+  await formEl.validate(async (valid, fields) => {
+    if (valid) {
+      loading.value = true
+      const { data } = await loginIn()
+      const userStore = useUserStore()
+
+      userStore.setToken(data)
+
+      setTimeout(async () => {
+        loading.value = false
+        await router.replace(route.query.redirect || '/')
+      }, 1000)
+    } else {
+      Promise.reject(fields)
+    }
+  })
 }
 </script>
 
@@ -36,16 +76,46 @@ const login = async () => {
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  background: url('@/assets/images/login.jpg') no-repeat;
-  opacity:0.6; filter: alpha(opacity=10);
-  // .login-mask {
-  //   position: fixed;
-  //   top: 0;
-  //   left: 0;
-  //   right: 0;
-  //   bottom: 0;
-  //   background: rgba(200,200,200,.5);
-  //   z-index: 1000;
-  // }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .login-content {
+    height: 480px;
+    display: flex;
+    padding: 20px 120px;
+    box-shadow: var(--el-box-shadow);
+    border-radius: 10px;
+
+    .login-content-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .login-content-logo>img {
+      width: 260px;
+    }
+
+    .login-content-form {
+      margin-left: 100px;
+      width: 280px;
+      text-align: center;
+      flex: 1;
+
+      h1 {
+        padding: 50px 0;
+      }
+
+      .login-btn {
+        width: 100%;
+        margin-top: 30px;
+      }
+
+      .forgot-password {
+        font-size: 12px;
+        cursor: pointer;
+      }
+    }
+  }
 }
 </style>
