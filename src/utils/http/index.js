@@ -41,10 +41,11 @@ http.interceptors.response.use(
     // 对响应错误做点什么
     switch (error.response.status) {
     case 400:
-      return ElMessage({
+      ElMessage({
         message: error.response.data.error_description,
         type: 'error'
       })
+      break
     case 401:
       if (ENV.ISREFRESHTOKEN) {
         refresh(http, error.response.config)
@@ -56,20 +57,23 @@ http.interceptors.response.use(
       }
       break
     case 403:
-      return ElMessage({
+      ElMessage({
         message: '您没有相关权限',
         type: 'error'
       })
+      break
     case 404:
-      return ElMessage({
+      ElMessage({
         message: '请求链接不存在',
         type: 'error'
       })
+      break
     case 500:
-      return ElMessage({
+      ElMessage({
         message: '服务器错误，请稍后再试',
         type: 'error'
       })
+      break
     default:
       ElMessage({
         message: '系统异常，请稍后再试',
