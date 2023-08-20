@@ -13,3 +13,8 @@ export const ENV = {
   // pinia持久化地址，可选 sessionStorage 与 localStorage
   PINIASTORY: sessionStorage
 }
+
+/**
+ * @description 业务常量设置
+ */
+export const CONFIG = {}
