@@ -17,4 +17,9 @@ export const ENV = {
 /**
  * @description 业务常量设置
  */
-export const CONFIG = {}
+export const CONFIG = {
+  // 本地代理字符串
+  PROXY_URL: import.meta.VITE_PROXY_URL,
+  // 静态资源打包路径
+  PUBLIC_BASE: import.meta.VITE_PUBLIC_BASE
+}
